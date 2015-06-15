@@ -1,3 +1,3 @@
 # MobiXar
 Coucou !
-Je vous aimes !
+Je vous aime !
