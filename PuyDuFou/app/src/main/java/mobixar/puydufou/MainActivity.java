@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.content.Intent;
 
 import mobixar.puydufou.business.Dispatcher;
 import mobixar.puydufou.business.LocalService;
