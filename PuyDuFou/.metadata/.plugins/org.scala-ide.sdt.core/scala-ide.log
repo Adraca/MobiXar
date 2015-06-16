@@ -1,0 +1,5 @@
+2015-06-16 11:24:21,183 ERROR [Worker-6] - System.err - [org.eclipse.debug.core] error can't determine modifiers of missing type org.eclipse.pde.internal.ui.wizards.imports.PluginImportHelper
+when weaving type org.eclipse.debug.core.IDebugEventSetListener
+when weaving classes 
+when weaving 
+ [Xlint:cantFindType]

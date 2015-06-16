@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import mobixar.puydufou.business.Dispatcher;
+import mobixar.puydufou.business.LocalService;
+
 
 public class MainActivity extends Activity {
 
@@ -12,6 +15,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        new Dispatcher().Route(LocalService.GETACTIVITIES, "coucou");
     }
 
     @Override
