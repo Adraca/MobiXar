@@ -1,5 +1,3 @@
 # MobiXar 
-Coucou ! 
-Je vous aime ! 
-HOLA! me llamo la picina de la muerta! 
-M'voyez ! 
+
+Projet JEE - Android de 3e année
