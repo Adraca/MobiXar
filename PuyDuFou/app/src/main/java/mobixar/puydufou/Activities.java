@@ -1,31 +1,23 @@
 package mobixar.puydufou;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.content.Intent;
 
 
-public class MainActivity extends Activity implements View.OnClickListener {
-    private Button btnActivity = null;
+public class Activities extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        btnActivity = (Button) findViewById(R.id.btnActivity);
-        btnActivity.setOnClickListener(this);
+        setContentView(R.layout.activity_activities);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_activities, menu);
         return true;
     }
 
@@ -42,14 +34,5 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void onClick(View v) {
-        callActivities();
-    }
-
-    public void callActivities() {
-        Intent intent = new Intent(this, Activities.class);
-        startActivity(intent);
     }
 }
