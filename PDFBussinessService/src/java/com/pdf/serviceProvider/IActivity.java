@@ -5,6 +5,8 @@
  */
 package com.pdf.serviceProvider;
 
+import com.pdf.entity.ActivityEntity;
+import java.util.List;
 import javax.ws.rs.PathParam;
 
 /**
@@ -13,7 +15,7 @@ import javax.ws.rs.PathParam;
  */
 public interface IActivity {
     
-    public String activities(@PathParam("date") String date);
+    public List<ActivityEntity> activities(@PathParam("date") String date);
     
     public String getActivity(@PathParam("name") String name,
                               @PathParam("date") String date);
