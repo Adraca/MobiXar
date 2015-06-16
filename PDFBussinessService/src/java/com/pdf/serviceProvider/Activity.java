@@ -5,25 +5,28 @@
  */
 package com.pdf.serviceProvider;
 
+import com.pdf.dataManager.facade.ActivityEntityFacade;
+import com.pdf.entity.ActivityEntity;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-/**
- *
- * @author franck
- */
 @Path("/activity")
 public class Activity implements IActivity{
     
+    @EJB
+    private ActivityEntityFacade activityfacade;
+    
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("/{date}")
-    public String activities(@PathParam("date") String date){
-        
-        return  date;
+    public List<ActivityEntity> activities(@PathParam("date") String date){
+        List<ActivityEntity> activityList = activityfacade.findAll();
+        return  activityList;
     }
     
     @GET
@@ -38,7 +41,5 @@ public class Activity implements IActivity{
     @GET
     public void evaluateActivity(@PathParam("name") String name,
                                  @PathParam("note") int note){
-        
     }
-    
 }
