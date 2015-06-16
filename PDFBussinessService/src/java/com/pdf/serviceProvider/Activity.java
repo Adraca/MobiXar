@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  *
- * @author fra
+ * @author franck
  */
 @Path("/activity")
 public class Activity implements IActivity{
