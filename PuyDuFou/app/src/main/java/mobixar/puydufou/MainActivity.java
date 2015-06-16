@@ -19,13 +19,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-<<<<<<< HEAD
-        new Dispatcher().Route(LocalService.GETACTIVITIES, "coucou");
-=======
-
+        
         btnActivity = (Button) findViewById(R.id.btnActivity);
         btnActivity.setOnClickListener(this);
->>>>>>> 123b7bd1a83a9ee1be3197edf06aad999fd441f4
+
     }
 
     @Override
