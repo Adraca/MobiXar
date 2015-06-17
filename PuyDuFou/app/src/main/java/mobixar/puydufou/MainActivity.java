@@ -12,16 +12,37 @@ import mobixar.puydufou.business.Dispatcher;
 import mobixar.puydufou.business.LocalService;
 
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends Activity {
     private Button btnActivity = null;
+    private Button btnPlanning = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        btnActivity = (Button) findViewById(R.id.btnActivity);
+        /*btnActivity = (Button) findViewById(R.id.btnActivity);
         btnActivity.setOnClickListener(this);
+        btnPlanning = (Button) findViewById(R.id.btnPlanning);
+        btnPlanning.setOnClickListener(this);*/
+
+        btnActivity = ((Button)this.findViewById(R.id.btnActivity));
+        btnActivity.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                callActivities();
+            }
+        });
+
+        btnPlanning = ((Button)this.findViewById(R.id.btnPlanning));
+        btnPlanning.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                callPlanning();
+            }
+        });
 
     }
 
@@ -47,12 +68,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
         return super.onOptionsItemSelected(item);
     }
 
-    public void onClick(View v) {
-        callActivities();
-    }
-
     public void callActivities() {
         Intent intent = new Intent(this, Activities.class);
+        startActivity(intent);
+    }
+
+    public void callPlanning() {
+        Intent intent = new Intent(this, Planning.class);
         startActivity(intent);
     }
 }

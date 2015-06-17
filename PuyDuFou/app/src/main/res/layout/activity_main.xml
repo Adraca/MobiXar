@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Welcome"
-        android:id="@+id/textBoxWelcome"
+        android:id="@+id/textWelcome"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -22,8 +22,8 @@
         android:layout_height="wrap_content"
         android:text="Activities"
         android:id="@+id/btnActivity"
-        android:layout_below="@+id/textBoxWelcome"
-        android:layout_toStartOf="@+id/textBoxWelcome"
+        android:layout_below="@+id/textWelcome"
+        android:layout_toStartOf="@+id/textWelcome"
         android:layout_marginTop="105dp" />
 
     <Button
