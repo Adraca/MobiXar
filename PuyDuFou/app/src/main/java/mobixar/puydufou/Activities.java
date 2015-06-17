@@ -66,7 +66,7 @@ public class Activities extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
                 ActivityInfo.itemName = (String) parent.getItemAtPosition(position);
-                view.animate().setDuration(1000).alpha(0).withEndAction(new Runnable() {
+                view.animate().setDuration(1000).alpha(1000).withEndAction(new Runnable() {
 
                     @Override
                     public void run() {

@@ -21,10 +21,13 @@ import java.util.List;
 public class serviceProvider extends  AsyncTask<Hashtable<String, String>, Void, String> {
 
 
-    public String hostAddress;
-    public String port;
-    public RemoteServices serviceAsked;
-    public HttpMethod method;
+    private HttpMethod method;
+    private String url;
+
+    public void buildUrl( String hostAddress, String port, RemoteServices serviceAsked, HttpMethod method) {
+        url = "http://"+hostAddress+":"+port+"/"+serviceAsked.url;
+        this.method = method;
+    }
 
     @Override
     protected String doInBackground(Hashtable<String, String>... params) {
@@ -59,9 +62,8 @@ public class serviceProvider extends  AsyncTask<Hashtable<String, String>, Void,
             }
 
             UrlEncodedFormEntity entity = new UrlEncodedFormEntity(formparams, "UTF-8");
-            String globalURL = this.hostAddress + port + serviceAsked.url;
 
-            HttpPost httppost = new HttpPost(globalURL);
+            HttpPost httppost = new HttpPost(this.url);
             httppost.addHeader("Content-Type", "application/x-www-form-urlencoded");
             httppost.setEntity(entity);
 
@@ -84,7 +86,7 @@ public class serviceProvider extends  AsyncTask<Hashtable<String, String>, Void,
         try {
 
             DefaultHttpClient httpClient = new DefaultHttpClient();
-            HttpGet getRequest = new HttpGet(hostAddress + port + serviceAsked.url);//"http://localhost:8080/RESTfulExample/json/product/get");
+            HttpGet getRequest = new HttpGet(this.url+getParamPath(params));//"http://localhost:8080/RESTfulExample/json/product/get");
             getRequest.addHeader("accept", "application/json");
 
             response = httpClient.execute(getRequest);
@@ -100,6 +102,23 @@ public class serviceProvider extends  AsyncTask<Hashtable<String, String>, Void,
 
 
         return response;
+    }
+
+    private String getParamPath(Hashtable<String, String> params){
+
+        String parmsUrl = "/";
+        int size = params.keySet().size();
+
+
+
+        for (String key : params.keySet()){
+            if(!params.keySet().toArray()[size-1].equals(key)){
+                parmsUrl += params.get(key)+"/";
+            }else
+                parmsUrl += params.get(key);
+        }
+
+        return parmsUrl;
     }
 
     private String readResponse(HttpResponse response) throws IOException{
