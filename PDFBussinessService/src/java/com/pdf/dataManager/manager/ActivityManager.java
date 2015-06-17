@@ -18,7 +18,12 @@ public class ActivityManager implements IActivity {
     public ActivityManager(){
     }
     
+    @Override
     public List<ActivityEntity> selectAll(){
-        return  activityfacade.findAll();
+        return  activityfacade.findAllNames();
     }
+    
+    //public List<String> selectActivityNames(){
+    //    return activityfacade.findAllNames();
+    //}
 }
