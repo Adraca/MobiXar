@@ -5,10 +5,15 @@
  */
 package com.pdf.businessProcess.activityProc;
 
+import com.pdf.entity.ActivityEntity;
+import java.util.List;
+
 /**
  *
  * @author fra
  */
 public interface IProcessActivitable {
+
+    public List<ActivityEntity> listingActivities();
     
 }
