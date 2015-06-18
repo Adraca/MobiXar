@@ -23,10 +23,12 @@ public class serviceProvider extends  AsyncTask<Hashtable<String, String>, Void,
 
     private HttpMethod method;
     private String url;
+    private RemoteServices serv;
 
     public void buildUrl( String hostAddress, String port, RemoteServices serviceAsked, HttpMethod method) {
         url = "http://"+hostAddress+":"+port+"/"+serviceAsked.url;//http://localhost:8080/RESTfulExample/json/product/get
         this.method = method;
+        serv = serviceAsked;
     }
 
     @Override
@@ -87,7 +89,7 @@ public class serviceProvider extends  AsyncTask<Hashtable<String, String>, Void,
 
             DefaultHttpClient httpClient = new DefaultHttpClient();
             HttpGet getRequest = new HttpGet(this.url+getParamPath(params));
-            getRequest.addHeader("accept", "application/json");
+            getRequest.addHeader("accept", serv.dataType);
 
             response = httpClient.execute(getRequest);
         }catch (ClientProtocolException e) {

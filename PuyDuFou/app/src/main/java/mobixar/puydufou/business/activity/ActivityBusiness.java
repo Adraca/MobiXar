@@ -34,10 +34,24 @@ public class ActivityBusiness implements ILocalBussiness{
            msg = getRatingActivities(msg);
        }else if(msg.getAskedServ().equals("getSchedules")) {
            msg = getSchedules(msg);
-       }else{
+       }else if(msg.getAskedServ().equals("noteActivity")){
+            msg = setNoteToActivity(msg);
+       }
+       else{
             msg.errorLog = "Unable to find the asked service";
         }
         return msg;
+    }
+
+    private Message setNoteToActivity(Message msg) {
+
+        Hashtable<String, String> params = (Hashtable) msg.getData();
+        serviceProvider service = new serviceProvider();
+        service.buildUrl("10.0.2.2", "8080", RemoteServices.NOTEACTIVITY, HttpMethod.GET);
+        AsyncTask<Hashtable<String, String>, Void, String> response = service.execute(params);
+        ArrayList<ScheduleEntity> arrEntity = new ArrayList<>();
+
+        return  msg;
     }
 
     private Message getSchedules(Message message) {
@@ -95,28 +109,28 @@ public class ActivityBusiness implements ILocalBussiness{
         return message;
     }
 
+    private Message rankActivity(Message message){
+
+
+        return message;
+    }
+
     public Message getRatingActivities(Message message) {
         Hashtable<String,String> params = new Hashtable<>();
         params.put("idActivity", (String) message.getData());
         serviceProvider service = new serviceProvider();
         service.buildUrl("10.0.2.2", "8080", RemoteServices.GETRATINGACTIVITIES, HttpMethod.GET);
         AsyncTask<Hashtable<String, String>, Void, String> response = service.execute(params);
-        ArrayList<ActivityEntity> arrayEntity = new ArrayList<>();
+        String rate = "";
         try {
-            String resString = response.get();
-            JSONArray arr = new JSONArray(resString);
-
-            for (int i = 0; i < arr.length(); i++) {
-                arrayEntity.add(new Gson().fromJson(arr.getString(i), ActivityEntity.class));
-            }
-            System.out.println();
+           rate = response.get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
-        message.outcomingData = arrayEntity;
-        return message;    }
+
+        message.outcomingData = rate;
+        return message;
+    }
 }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 import mobixar.puydufou.business.Dispatcher;
@@ -37,10 +39,13 @@ public class DetailsActivity extends Activity {
         setContentView(R.layout.activity_details);
         this.textNameActivity = ActivityInfo.itemName;
 
+
         //Get idActivity
         Intent i = getIntent();
         Bundle b = i.getExtras();
         String idActivity = b.getString("key");
+
+        ratingBarEventListener(idActivity);
 
         //Afficher nom
         Message message = route.Route(LocalService.GETACTIVITIES, null);
@@ -54,11 +59,11 @@ public class DetailsActivity extends Activity {
         }
 
         //Afficher rating
-        /*Message messageRating = route.Route(LocalService.GETRATING, idActivity);
+        Message messageRating = route.Route(LocalService.GETRATING, idActivity);
         String ratingActivity = (String) messageRating.outcomingData;
         RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingStar);
         ratingBar.setNumStars(5);
-        ratingBar.setRating(Float.valueOf(ratingActivity));*/
+        ratingBar.setRating(Float.valueOf(ratingActivity));
 
         //Afficher story
         final ListView listStory = (ListView) findViewById(R.id.listStoryActivity);
@@ -93,6 +98,22 @@ public class DetailsActivity extends Activity {
 
         final StableArrayAdapter adapterSchedule = new StableArrayAdapter(this, android.R.layout.simple_list_item_1, arrSchedule);
         listSchedule.setAdapter(adapterSchedule);
+    }
+
+    private void ratingBarEventListener(final String idActivity) {
+        final RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingStar);
+        ratingBar.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Hashtable<String, String> params = new Hashtable<String, String>();
+                params.put("idActivity",idActivity);
+                params.put("note", String.valueOf(ratingBar.getRating()));
+                route.Route(LocalService.NOTEACTIVITY, params);
+
+            }
+
+        });
     }
 
     @Override
