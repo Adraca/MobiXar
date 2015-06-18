@@ -8,7 +8,8 @@ public enum LocalService {
     GETACTIVITIES("activities/getAllActivities"),
     GETRATING("activities/getRatingActivities"),
     GETSCHEDULE("activities/getSchedules"),
-    NOTEACTIVITY("activities/noteActivity");
+    NOTEACTIVITY("activities/noteActivity"),
+    ACTIVITYRANGE("activities/getActivityInRange");
 
     public String uri;
 

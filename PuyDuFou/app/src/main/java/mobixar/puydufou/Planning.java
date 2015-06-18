@@ -5,9 +5,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.sql.Time;
+import java.util.Hashtable;
+
+import mobixar.puydufou.business.Dispatcher;
+import mobixar.puydufou.business.LocalService;
+
 
 public class Planning extends Activity {
 
+    private final Dispatcher router = new Dispatcher();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +26,20 @@ public class Planning extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_planning, menu);
+
+       fillActivityList("8", "17");
         return true;
+    }
+
+    private void fillActivityList(String h1, String h2) {
+        Hashtable<String, String> params = new Hashtable<>();
+        params.put("beguin", h1);
+        params.put("end", h2);
+
+        router.Route(LocalService.ACTIVITYRANGE, params);
+
+
+
     }
 
     @Override

@@ -7,13 +7,12 @@ import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.concurrent.ExecutionException;
 
 import mobixar.puydufou.Message;
+import mobixar.puydufou.business.ILocalBussiness;
 import mobixar.puydufou.entity.ActivityEntity;
 import mobixar.puydufou.entity.ScheduleEntity;
 import mobixar.puydufou.serviceInvoker.HttpMethod;
@@ -23,7 +22,7 @@ import mobixar.puydufou.serviceInvoker.serviceProvider;
 /**
  * Created by fra on 16/06/2015.
  */
-public class ActivityBusiness implements ILocalBussiness{
+public class ActivityBusiness implements ILocalBussiness {
 
 
     @Override
@@ -36,10 +35,17 @@ public class ActivityBusiness implements ILocalBussiness{
            msg = getSchedules(msg);
        }else if(msg.getAskedServ().equals("noteActivity")){
             msg = setNoteToActivity(msg);
+       }else if(msg.getAskedServ().equals("getActivityInRange")){
+           msg = getActivityInRange(msg);
        }
        else{
             msg.errorLog = "Unable to find the asked service";
         }
+        return msg;
+    }
+
+    private Message getActivityInRange(Message msg){
+
         return msg;
     }
 

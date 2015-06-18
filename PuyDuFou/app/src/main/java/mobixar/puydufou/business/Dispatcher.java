@@ -12,6 +12,7 @@ public class Dispatcher {
 
         routingTable = new Hashtable<String, String>();
         routingTable.put("activities", "mobixar.puydufou.business.activity.ActivityBusiness");
+        routingTable.put("planning", "mobixar.puydufou.business.planning.PlanningBusiness");
     }
 
     public Message Route(LocalService service, Object data) {

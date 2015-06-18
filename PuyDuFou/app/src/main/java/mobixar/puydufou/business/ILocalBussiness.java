@@ -1,4 +1,4 @@
-package mobixar.puydufou.business.activity;
+package mobixar.puydufou.business;
 
 import mobixar.puydufou.Message;
 
