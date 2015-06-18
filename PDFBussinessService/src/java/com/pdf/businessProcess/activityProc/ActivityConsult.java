@@ -1,6 +1,5 @@
 package com.pdf.businessProcess.activityProc;
 
-
 import com.pdf.businessServices.activity.IActivable;
 import com.pdf.businessServices.activity.ProxyActivityConsult;
 import com.pdf.businessServices.activity.ServActivityConsult;
@@ -11,8 +10,6 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-
-
 
 @LocalBean
 @Stateless
@@ -29,7 +26,7 @@ public class ActivityConsult implements IProcessActivitable {
         //return businessActivity.activityList();
     }
     
-    public String activityRating(String activityName){
-        return proxyActivityConsult.activityRating(activityName);
+    public String activityRating(int idActivity){
+        return proxyActivityConsult.activityRating(idActivity);
     }
 }

@@ -1,7 +1,6 @@
 package com.pdf.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,19 +11,21 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="rating")
+@Table(name="schedule")
 @Getter
 @Setter
-public class RatingEntity implements Serializable{
-    
+public class ScheduleEntity implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name="IDRATING")
+    @Column(name="IDSCHEDULE")
     private Integer id;
     
     @Column(name="IDACTIVITY")
     private Integer idActivity;
     
-    @Column(name="RATINGMARK")
-    private Integer mark;
+    @Column(name="ACTIVITYTIME")
+    private String time;
+    
+    public ScheduleEntity(){
+    }
 }

@@ -21,10 +21,14 @@ public class ActivityManager implements IActivity {
     
     @Override
     public List<ActivityEntity> selectAll(){
-        return  activityfacade.findActivity();
+        return  activityfacade.findAll();
     }
     
-    public String getRate(String activityName){
-        return activityfacade.findRating(activityName);
+    public String getRate(int idActivity){
+        return activityfacade.findRating(idActivity);
+    }
+    
+    public List<ActivityEntity> selectActivity(Integer id){
+        return activityfacade.findActivity(id);
     }
 }

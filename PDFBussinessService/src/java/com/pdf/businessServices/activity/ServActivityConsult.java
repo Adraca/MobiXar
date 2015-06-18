@@ -13,16 +13,16 @@ import javax.inject.Inject;
 @Stateless
  public class ServActivityConsult implements IActivable{
 
-     @EJB
-     private ActivityManager activityManager;
+    @EJB
+    private ActivityManager activityManager;
      
     @Override
     public List<ActivityEntity> activityList() {
         return activityManager.selectAll();
     }
     
-    public String activityRating(String activityName){
-        return activityManager.getRate(activityName);
+    public String activityRating(int idActivity){
+        return activityManager.getRate(idActivity);
     }
     
     public ServActivityConsult(){

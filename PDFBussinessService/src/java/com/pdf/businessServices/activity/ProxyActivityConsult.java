@@ -20,7 +20,7 @@ public class ProxyActivityConsult implements IActivable{
          return activityConsult.activityList();
     }
     
-    public String activityRating(String activityName){
-        return activityConsult.activityRating(activityName);
+    public String activityRating(int idActivity){
+        return activityConsult.activityRating(idActivity);
     }
 }

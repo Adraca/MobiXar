@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IActivable {
     public List<ActivityEntity> activityList();
-    public String activityRating(String activityName);
+    public String activityRating(int idActivity);
 }

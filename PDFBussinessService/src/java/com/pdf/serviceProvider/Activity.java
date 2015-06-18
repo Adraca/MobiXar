@@ -22,27 +22,18 @@ public class Activity implements IActivity{
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{date}")
-    public List<ActivityEntity> activities(@PathParam("date") String date){
+    @Path("/all")
+    public List<ActivityEntity> activities(){
          List<ActivityEntity> activity = busActivityConsult.listingActivities();
          return activity;
     }
     
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    @Path("/{activityName}")
-    public String activityRating(@PathParam("activityName") String activityName){
-        String rating = busActivityConsult.activityRating(activityName);
+    @Path("/rating/{idActivity}")
+    public String activityRating(@PathParam("idActivity") String idActivity){
+        String rating = busActivityConsult.activityRating(Integer.parseInt(idActivity));
         return rating;
-    }
-    
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    @Path("/{name}/{date}")
-    public String getActivity(@PathParam("name") String name,
-                              @PathParam("date") String date){
-        
-        return null;
     }
     
     @GET

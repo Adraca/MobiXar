@@ -16,5 +16,5 @@ import java.util.List;
 public interface IProcessActivitable {
 
     public List<ActivityEntity> listingActivities();
-    public String activityRating(String activityName);
+    public String activityRating(int idActivity);
 }
