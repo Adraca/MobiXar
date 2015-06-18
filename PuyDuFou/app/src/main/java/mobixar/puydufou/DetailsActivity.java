@@ -21,6 +21,7 @@ import java.util.List;
 import mobixar.puydufou.business.Dispatcher;
 import mobixar.puydufou.business.LocalService;
 import mobixar.puydufou.entity.ActivityEntity;
+import mobixar.puydufou.entity.ScheduleEntity;
 
 
 public class DetailsActivity extends Activity {
@@ -42,15 +43,22 @@ public class DetailsActivity extends Activity {
         String idActivity = b.getString("key");
 
         //Afficher nom
-        TextView textName = (TextView) findViewById(R.id.textNameActivity);
-        textName.setText(this.textNameActivity);
+        Message message = route.Route(LocalService.GETACTIVITIES, null);
+        final List<ActivityEntity> listActivities = (ArrayList<ActivityEntity>) message.outcomingData;
+
+        for(ActivityEntity nameEntity : listActivities) {
+            if(idActivity.equals(nameEntity.getId())) {
+                TextView textName = (TextView) findViewById(R.id.textNameActivity);
+                textName.setText(nameEntity.getName());
+            }
+        }
 
         //Afficher rating
-        Message messageRating = route.Route(LocalService.GETRATING, idActivity);
+        /*Message messageRating = route.Route(LocalService.GETRATING, idActivity);
         String ratingActivity = (String) messageRating.outcomingData;
         RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingStar);
         ratingBar.setNumStars(5);
-        ratingBar.setRating(Float.valueOf(ratingActivity));
+        ratingBar.setRating(Float.valueOf(ratingActivity));*/
 
         //Afficher story
         final ListView listStory = (ListView) findViewById(R.id.listStoryActivity);
@@ -60,8 +68,9 @@ public class DetailsActivity extends Activity {
         final ArrayList<String> arrStory = new ArrayList<String>();
         int iIncStory = 0;
         for(ActivityEntity story : storyActivity) {
-            if(storyActivity.get(iIncStory).getName().equals(this.textNameActivity)) {
+            if(storyActivity.get(iIncStory).getName().equals(((TextView)findViewById(R.id.textNameActivity)).getText())) {
                 arrStory.add(storyActivity.get(iIncStory).getStory());
+                break;
             }
             iIncStory++;
         }
@@ -71,15 +80,14 @@ public class DetailsActivity extends Activity {
 
         //Afficher schedule
         final ListView listSchedule = (ListView) findViewById(R.id.listScheduleActivity);
-        Message messageSchedule = route.Route(LocalService.GETACTIVITIES, null);
-        List<ActivityEntity> scheduleActivity = (ArrayList<ActivityEntity>) messageSchedule.outcomingData;
+        Message messageSchedule = route.Route(LocalService.GETSCHEDULE, idActivity);
+        List<ScheduleEntity> scheduleActivity = (ArrayList<ScheduleEntity>) messageSchedule.outcomingData;
 
         final ArrayList<String> arrSchedule = new ArrayList<String>();
         int iIncSchedule = 0;
-        for(ActivityEntity schedule : scheduleActivity) {
-            if(storyActivity.get(iIncSchedule).getName().equals(this.textNameActivity)) {
-                arrSchedule.add(storyActivity.get(iIncSchedule).getStory());
-            }
+        for(ScheduleEntity schedule : scheduleActivity) {
+
+            arrSchedule.add(scheduleActivity.get(iIncSchedule).getTime());
             iIncSchedule++;
         }
 

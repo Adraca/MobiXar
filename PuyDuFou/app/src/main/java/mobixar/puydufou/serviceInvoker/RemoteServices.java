@@ -5,8 +5,9 @@ package mobixar.puydufou.serviceInvoker;
  */
 public enum RemoteServices {
 
-    GETALLACTIVITIES("PDFBussinessService/pdf/activity"),
-    GETRATINGACTIVITIES("PDFBussinessService/pdf/rating");
+    GETALLACTIVITIES("PDFBussinessService/pdf/activity/all"),
+    GETRATINGACTIVITIES("PDFBussinessService/pdf/rating"),
+    GETSCHEDULES("PDFBussinessService/pdf/schedule");
 
     String url;
 

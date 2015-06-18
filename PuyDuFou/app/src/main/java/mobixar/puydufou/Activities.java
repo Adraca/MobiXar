@@ -52,6 +52,7 @@ public class Activities extends Activity {
                     if(a.getName().equals(activityChoosen)) {
                         callActivityDetails(a.getId());
 
+
                     }
                 }
                 view.animate().setDuration(1000).alpha(1000).withEndAction(new Runnable() {

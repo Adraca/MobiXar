@@ -86,7 +86,7 @@ public class serviceProvider extends  AsyncTask<Hashtable<String, String>, Void,
         try {
 
             DefaultHttpClient httpClient = new DefaultHttpClient();
-            HttpGet getRequest = new HttpGet(this.url+getParamPath(params));//"http://localhost:8080/RESTfulExample/json/product/get");
+            HttpGet getRequest = new HttpGet(this.url+getParamPath(params));
             getRequest.addHeader("accept", "application/json");
 
             response = httpClient.execute(getRequest);
@@ -106,7 +106,7 @@ public class serviceProvider extends  AsyncTask<Hashtable<String, String>, Void,
 
     private String getParamPath(Hashtable<String, String> params){
 
-        String parmsUrl = "/";
+        String parmsUrl = params.keySet().size()==0?"":"/";
         int size = params.keySet().size();
 
 
