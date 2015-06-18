@@ -19,4 +19,9 @@ public class ServRatingConsult implements IRatable{
     
     public ServRatingConsult(){
     }
+    
+    @Override
+    public void rateActivity(int idActivity, double mark){
+        ratingManager.rateActivity(idActivity, mark);
+    }
 }

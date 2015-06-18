@@ -17,4 +17,9 @@ public class ProxyRatingConsult implements IRatable{
     
     public ProxyRatingConsult(){
     }
+
+    @Override
+    public void rateActivity(int idActivity, double mark) {
+        ratingConsult.rateActivity(idActivity, mark);
+    }
 }

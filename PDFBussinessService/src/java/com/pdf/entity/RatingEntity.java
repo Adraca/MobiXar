@@ -26,5 +26,8 @@ public class RatingEntity implements Serializable{
     private Integer idActivity;
     
     @Column(name="RATINGMARK")
-    private Integer mark;
+    private Double mark;
+    
+    public RatingEntity(){
+    }
 }

@@ -16,8 +16,15 @@ public class Rating implements IRating{
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/{idactivity}")
-    public String activityRating(@PathParam("idactivity") String idactivity) {
+    public String getRate(@PathParam("idactivity") String idactivity) {
         String rating = ratingConsult.getRate(Integer.valueOf(idactivity));
         return rating;
+    }
+
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    @Path("/{idactivity}/{mark}")
+    public void rateActivity(@PathParam("idactivity")String idactivity, @PathParam("mark") String mark) {
+        ratingConsult.rateActivity(Integer.valueOf(idactivity), Double.valueOf(mark));
     }
 }

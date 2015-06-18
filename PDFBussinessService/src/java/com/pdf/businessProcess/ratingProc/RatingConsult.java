@@ -16,6 +16,11 @@ public class RatingConsult implements IProcessRating{
         return proxyConsult.getRate(idActivity);
     }
     
+    @Override
+    public void rateActivity(int idActivity, double mark){
+        proxyConsult.rateActivity(idActivity, mark);
+    }
+    
     public RatingConsult(){
     }
 }
