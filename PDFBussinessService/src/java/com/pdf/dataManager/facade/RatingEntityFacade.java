@@ -26,6 +26,6 @@ public class RatingEntityFacade extends AbstractFacade<RatingEntity> {
         Query q = em.createQuery(
                 "SELECT AVG(r.mark) FROM RatingEntity r WHERE r.idActivity = :idactivity").
                   setParameter("idactivity", idActivity);
-        return (String)q.getSingleResult();
+        return String.valueOf(q.getSingleResult());
     }
 }

@@ -19,7 +19,7 @@ public class Schedule implements ISchedule{
    @Produces(MediaType.APPLICATION_JSON)
    @Path("/{activityId}")
    public List<ScheduleEntity> scheduleList(@PathParam("activityId") String activityId){
-       List<ScheduleEntity> schedule = scheduleConsult.selectSchedule(Integer.parseInt(activityId));
+       List<ScheduleEntity> schedule = scheduleConsult.selectSchedule(Integer.valueOf(activityId));
        return schedule;
    }
 }

@@ -11,8 +11,8 @@ public class ProxyRatingConsult implements IRatable{
     private ServRatingConsult ratingConsult;
     
     @Override
-    public String activityRating(int idActivity) {
-        return ratingConsult.activityRating(idActivity);
+    public String getRate(int idActivity) {
+        return ratingConsult.getRate(idActivity);
     }
     
     public ProxyRatingConsult(){

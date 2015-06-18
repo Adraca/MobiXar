@@ -13,7 +13,7 @@ public class ServRatingConsult implements IRatable{
     private RatingManager ratingManager;
     
     @Override
-    public String activityRating(int idActivity) {
+    public String getRate(int idActivity) {
         return ratingManager.getRate(idActivity);
     }
     

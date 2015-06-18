@@ -4,6 +4,7 @@ import com.pdf.businessProcess.ratingProc.RatingConsult;
 import javax.ejb.EJB;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -14,9 +15,9 @@ public class Rating implements IRating{
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    @Path("/{idActivity}")
-    public String activityRating(String idActivity) {
-        String rating = ratingConsult.activityRating(Integer.parseInt(idActivity));
+    @Path("/{idactivity}")
+    public String activityRating(@PathParam("idactivity") String idactivity) {
+        String rating = ratingConsult.getRate(Integer.valueOf(idactivity));
         return rating;
     }
 }

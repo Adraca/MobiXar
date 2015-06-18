@@ -12,8 +12,8 @@ public class RatingConsult implements IProcessRating{
     private ProxyRatingConsult proxyConsult;
     
     @Override
-    public String activityRating(int idActivity) {
-        return proxyConsult.activityRating(idActivity);
+    public String getRate(int idActivity) {
+        return proxyConsult.getRate(idActivity);
     }
     
     public RatingConsult(){
