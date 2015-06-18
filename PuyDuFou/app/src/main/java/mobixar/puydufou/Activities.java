@@ -16,6 +16,8 @@ import java.util.List;
 
 import mobixar.puydufou.business.Dispatcher;
 import mobixar.puydufou.business.LocalService;
+import mobixar.puydufou.business.activity.ActivityBusiness;
+import mobixar.puydufou.entity.ActivityEntity;
 
 
 public class Activities extends Activity {
@@ -25,37 +27,17 @@ public class Activities extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activities);
 
-        /*String[] tabActivities = new String[]{
-                "Le signe du Triomphe",
-                "Les Vikings",
-                "Le Bal des Oiseaux Fantômes"
-        };
-
-        final ArrayAdapter<String> adapterActivities = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tabActivities);
-        ListView list = (ListView) findViewById(R.id.listActivities);
-        list.setAdapter(adapterActivities);*/
-
         final ListView listView = (ListView) findViewById(R.id.listActivities);
 
-        new Dispatcher().Route(LocalService.GETACTIVITIES, null);
-        String[] values = new String[]{
-                "Le signe du Triomphe",
-                "Les Vikings",
-                "Le Bal des Oiseaux Fantomes",
-                "Le Secret de la Lance",
-                "Mousquetaire de Richelieu",
-                "Les Orgues de Feu",
-                "Les Chevaliers de la Table Ronde",
-                "L'Odysee du Puy du Fou",
-                "Les Automates Musiciens",
-                "Les Musiciens Traditionnels",
-                "Les Grandes Eaux",
-                "La Legande de Martin"
-        };
+        Dispatcher route = new Dispatcher();
+        Message message = route.Route(LocalService.GETACTIVITIES, null);
+        final List<ActivityEntity> listActivities = (ArrayList<ActivityEntity>) message.outcomingData;
 
         final ArrayList<String> list = new ArrayList<String>();
-        for(int i = 0; i < values.length; i++) {
-            list.add(values[i]);
+        int i = 0;
+        for(ActivityEntity nameActivity : listActivities) {
+            list.add(listActivities.get(i).getName());
+            i++;
         }
 
         final StableArrayAdapter adapter = new StableArrayAdapter(this, android.R.layout.simple_list_item_1, list);
@@ -65,14 +47,20 @@ public class Activities extends Activity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
-                ActivityInfo.itemName = (String) parent.getItemAtPosition(position);
+                String activityChoosen = (String) parent.getItemAtPosition(position);
+                for(ActivityEntity a : listActivities) {
+                    if(a.getName().equals(activityChoosen)) {
+                        callActivityDetails(a.getId());
+
+                    }
+                }
                 view.animate().setDuration(1000).alpha(1000).withEndAction(new Runnable() {
 
                     @Override
                     public void run() {
-                        adapter.notifyDataSetChanged();
-                        view.setAlpha(1);
-                        callActivityDetails();
+                        //adapter.notifyDataSetChanged();
+                       // view.setAlpha(1);
+                       // callActivityDetails();
                     }
                 });
             }
@@ -80,9 +68,11 @@ public class Activities extends Activity {
         });
     }
 
-    public void callActivityDetails() {
-        Intent intent = new Intent(this, DetailsActivity.class);
-        startActivity(intent);
+    public void callActivityDetails(String idActivity) {
+        Intent intentIdActivity = new Intent(Activities.this, DetailsActivity.class);
+        intentIdActivity.putExtra("key", idActivity);
+
+        startActivity(intentIdActivity);
     }
 
     @Override

@@ -3,6 +3,10 @@ package mobixar.puydufou.entity;
 
 import java.sql.Date;
 
+import mobixar.puydufou.serviceInvoker.HttpMethod;
+import mobixar.puydufou.serviceInvoker.RemoteServices;
+import mobixar.puydufou.serviceInvoker.serviceProvider;
+
 public class ActivityEntity {
     private String id;
     private String name;

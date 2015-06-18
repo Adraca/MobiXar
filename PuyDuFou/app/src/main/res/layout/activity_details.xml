@@ -11,22 +11,33 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/textNameActivity"
+        android:text="Name"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/textScheduleActivity"
-        android:layout_below="@+id/textNameActivity"
-        android:layout_toEndOf="@+id/textNameActivity" />
+        android:layout_centerHorizontal="true"
+        android:textSize="30dp"/>
 
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ratingStar"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/textNameActivity"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="73dp" />
+        android:layout_marginTop="24dp" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:id="@+id/listStoryActivity"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/ratingStar"
+        android:layout_alignParentStart="true" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:id="@+id/listScheduleActivity"
+        android:layout_below="@+id/listStoryActivity"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp"/>
+
 </RelativeLayout>

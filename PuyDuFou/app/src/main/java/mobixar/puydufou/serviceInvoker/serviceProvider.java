@@ -25,7 +25,7 @@ public class serviceProvider extends  AsyncTask<Hashtable<String, String>, Void,
     private String url;
 
     public void buildUrl( String hostAddress, String port, RemoteServices serviceAsked, HttpMethod method) {
-        url = "http://"+hostAddress+":"+port+"/"+serviceAsked.url;
+        url = "http://"+hostAddress+":"+port+"/"+serviceAsked.url;//http://localhost:8080/RESTfulExample/json/product/get
         this.method = method;
     }
 

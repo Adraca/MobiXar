@@ -4,9 +4,6 @@ import java.lang.reflect.Method;
 import java.util.Hashtable;
 import mobixar.puydufou.Message;
 
-/**
- * Created by fra on 16/06/2015.
- */
 public class Dispatcher {
 
     private Hashtable<String, String> routingTable;

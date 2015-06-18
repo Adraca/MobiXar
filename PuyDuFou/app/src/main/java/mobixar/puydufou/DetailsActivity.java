@@ -1,20 +1,34 @@
 package mobixar.puydufou;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import mobixar.puydufou.business.Dispatcher;
+import mobixar.puydufou.business.LocalService;
+import mobixar.puydufou.entity.ActivityEntity;
+
 
 public class DetailsActivity extends Activity {
 
     private String textNameActivity;
-    private String textScheduleActivity;
+    private String textStoryActivity;
+
+    Dispatcher route = new Dispatcher();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,13 +36,55 @@ public class DetailsActivity extends Activity {
         setContentView(R.layout.activity_details);
         this.textNameActivity = ActivityInfo.itemName;
 
+        //Get idActivity
+        Intent i = getIntent();
+        Bundle b = i.getExtras();
+        String idActivity = b.getString("key");
 
-        TextView textView = (TextView) findViewById(R.id.textNameActivity);
-        textView.setText(this.textNameActivity);
-        RatingBar ratingStar = (RatingBar) findViewById(R.id.ratingStar);
-        ratingStar.setNumStars(5);
-        ratingStar.setRating((float) 3.5);
+        //Afficher nom
+        TextView textName = (TextView) findViewById(R.id.textNameActivity);
+        textName.setText(this.textNameActivity);
 
+        //Afficher rating
+        Message messageRating = route.Route(LocalService.GETRATING, idActivity);
+        String ratingActivity = (String) messageRating.outcomingData;
+        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingStar);
+        ratingBar.setNumStars(5);
+        ratingBar.setRating(Float.valueOf(ratingActivity));
+
+        //Afficher story
+        final ListView listStory = (ListView) findViewById(R.id.listStoryActivity);
+        Message messageStory = route.Route(LocalService.GETACTIVITIES, null);
+        List<ActivityEntity> storyActivity = (ArrayList<ActivityEntity>) messageStory.outcomingData;
+
+        final ArrayList<String> arrStory = new ArrayList<String>();
+        int iIncStory = 0;
+        for(ActivityEntity story : storyActivity) {
+            if(storyActivity.get(iIncStory).getName().equals(this.textNameActivity)) {
+                arrStory.add(storyActivity.get(iIncStory).getStory());
+            }
+            iIncStory++;
+        }
+
+        final StableArrayAdapter adapterStory = new StableArrayAdapter(this, android.R.layout.simple_list_item_1, arrStory);
+        listStory.setAdapter(adapterStory);
+
+        //Afficher schedule
+        final ListView listSchedule = (ListView) findViewById(R.id.listScheduleActivity);
+        Message messageSchedule = route.Route(LocalService.GETACTIVITIES, null);
+        List<ActivityEntity> scheduleActivity = (ArrayList<ActivityEntity>) messageSchedule.outcomingData;
+
+        final ArrayList<String> arrSchedule = new ArrayList<String>();
+        int iIncSchedule = 0;
+        for(ActivityEntity schedule : scheduleActivity) {
+            if(storyActivity.get(iIncSchedule).getName().equals(this.textNameActivity)) {
+                arrSchedule.add(storyActivity.get(iIncSchedule).getStory());
+            }
+            iIncSchedule++;
+        }
+
+        final StableArrayAdapter adapterSchedule = new StableArrayAdapter(this, android.R.layout.simple_list_item_1, arrSchedule);
+        listSchedule.setAdapter(adapterSchedule);
     }
 
     @Override

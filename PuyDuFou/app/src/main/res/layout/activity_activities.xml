@@ -10,10 +10,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Activities"
+        android:text="Spectacles disponibles"
         android:id="@+id/textActivities"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true" />
 
     <ListView
         android:layout_width="wrap_content"
@@ -23,4 +23,13 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="43dp"
         android:choiceMode="none" />
+
+    <ImageSwitcher
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageSwitcher"
+        android:layout_alignBottom="@+id/listActivities"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="110dp"
+        android:layout_marginBottom="149dp" />
 </RelativeLayout>

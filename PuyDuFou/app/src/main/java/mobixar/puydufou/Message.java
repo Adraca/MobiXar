@@ -9,6 +9,7 @@ public class Message {
     private String askedService;
     public String statusCode;
     public String errorLog;
+    public Object outcomingData;
 
 
     public Message(Object data,String askedService){

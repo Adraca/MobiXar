@@ -5,7 +5,9 @@ package mobixar.puydufou.business;
  */
 public enum LocalService {
 
-    GETACTIVITIES("activities/getAllActivities");
+    GETACTIVITIES("activities/getAllActivities"),
+
+    GETRATING("activities/getRatingActivities");
 
     public String uri;
 
