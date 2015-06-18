@@ -4,6 +4,7 @@ import com.pdf.businessProcess.activityProc.ActivityConsult;
 import com.pdf.businessServices.activity.ServActivityConsult;
 import com.pdf.dataManager.facade.ActivityEntityFacade;
 import com.pdf.entity.ActivityEntity;
+import com.pdf.entity.RatingEntity;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Inject;
@@ -23,8 +24,16 @@ public class Activity implements IActivity{
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{date}")
     public List<ActivityEntity> activities(@PathParam("date") String date){
-         List<ActivityEntity> l = busActivityConsult.listingActivities();
-         return l;
+         List<ActivityEntity> activity = busActivityConsult.listingActivities();
+         return activity;
+    }
+    
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    @Path("/{activityName}")
+    public String activityRating(@PathParam("activityName") String activityName){
+        String rating = busActivityConsult.activityRating(activityName);
+        return rating;
     }
     
     @GET

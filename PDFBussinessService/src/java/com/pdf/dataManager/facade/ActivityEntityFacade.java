@@ -1,6 +1,7 @@
 package com.pdf.dataManager.facade;
 
 import com.pdf.entity.ActivityEntity;
+import com.pdf.entity.RatingEntity;
 import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -27,24 +28,15 @@ public class ActivityEntityFacade extends AbstractFacade<ActivityEntity> {
         super(ActivityEntity.class);
     }
     
-    public List<ActivityEntity> findAllNames(){
-        //return em.createQuery(
-        //"SELECT u FROM Activity").getResultList();
-        /*CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
-        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-        Root<ActivityEntity> c = cq.from(ActivityEntity.class);
-        cq.select(c);
-        javax.persistence.Query q = getEntityManager().createQuery(cq);
-        cq.where(cb.gt(c.get("id"), 1));
-        q.setFirstResult(0);
-        return q.getResultList();*/
+    public List<ActivityEntity> findActivity(){
+
         Query q = em.createQuery("SELECT e FROM ActivityEntity e where e.id = :pid").setParameter("pid", 1);
         return q.getResultList();
     }
     
-    //public List<ActivityEntity> findWithRating(){
-    //    return em.createQuery(
-    //    "SELECT name FROM Activity, Rating WHERE Activity.IdActivity = Rating.IdActivity").getResultList();
-    //set parameter avec q.setParameter("id", 2104);
-    //}
+    public String findRating(String activityName){
+        Query q = em.createQuery("SELECT AVG(r.RATINGMARK) FROM ActivityEntity a, Rating r WHERE a.name = :activityName").
+                  setParameter("activityName", activityName);
+        return (String)q.getSingleResult();
+    }
 }

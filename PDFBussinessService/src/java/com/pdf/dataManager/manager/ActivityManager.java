@@ -3,6 +3,7 @@ package com.pdf.dataManager.manager;
 import com.pdf.dataManager.IActivity;
 import com.pdf.dataManager.facade.ActivityEntityFacade;
 import com.pdf.entity.ActivityEntity;
+import com.pdf.entity.RatingEntity;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -20,10 +21,10 @@ public class ActivityManager implements IActivity {
     
     @Override
     public List<ActivityEntity> selectAll(){
-        return  activityfacade.findAllNames();
+        return  activityfacade.findActivity();
     }
     
-    //public List<String> selectActivityNames(){
-    //    return activityfacade.findAllNames();
-    //}
+    public String getRate(String activityName){
+        return activityfacade.findRating(activityName);
+    }
 }

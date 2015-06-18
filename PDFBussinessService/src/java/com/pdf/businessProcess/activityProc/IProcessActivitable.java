@@ -6,6 +6,7 @@
 package com.pdf.businessProcess.activityProc;
 
 import com.pdf.entity.ActivityEntity;
+import com.pdf.entity.RatingEntity;
 import java.util.List;
 
 /**
@@ -15,5 +16,5 @@ import java.util.List;
 public interface IProcessActivitable {
 
     public List<ActivityEntity> listingActivities();
-    
+    public String activityRating(String activityName);
 }

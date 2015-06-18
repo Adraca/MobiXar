@@ -6,6 +6,7 @@ import com.pdf.businessServices.activity.ProxyActivityConsult;
 import com.pdf.businessServices.activity.ServActivityConsult;
 import com.pdf.dataManager.facade.ActivityEntityFacade;
 import com.pdf.entity.ActivityEntity;
+import com.pdf.entity.RatingEntity;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -26,5 +27,9 @@ public class ActivityConsult implements IProcessActivitable {
         return proxyActivityConsult.activityList();
         //IActivable businessActivity = new ProxyActivityConsult();
         //return businessActivity.activityList();
+    }
+    
+    public String activityRating(String activityName){
+        return proxyActivityConsult.activityRating(activityName);
     }
 }
