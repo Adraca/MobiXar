@@ -29,14 +29,6 @@ public class Activity implements IActivity{
     }
     
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    @Path("/rating/{idActivity}")
-    public String activityRating(@PathParam("idActivity") String idActivity){
-        String rating = busActivityConsult.activityRating(Integer.parseInt(idActivity));
-        return rating;
-    }
-    
-    @GET
     public void evaluateActivity(@PathParam("name") String name,
                                  @PathParam("note") int note){
     }
