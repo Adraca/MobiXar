@@ -17,7 +17,7 @@ public class Schedule implements ISchedule{
    
    @GET
    @Produces(MediaType.APPLICATION_JSON)
-   @Path("/{activityId}")
+   @Path("getschedule/{activityId}")
    public List<ScheduleEntity> scheduleList(@PathParam("activityId") String activityId){
        List<ScheduleEntity> schedule = scheduleConsult.selectSchedule(Integer.valueOf(activityId));
        return schedule;
