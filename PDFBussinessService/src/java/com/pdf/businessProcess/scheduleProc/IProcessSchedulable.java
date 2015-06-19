@@ -5,4 +5,5 @@ import java.util.List;
 
 public interface IProcessSchedulable {
     public List<ScheduleEntity> selectSchedule(Integer id);
+    public List<ScheduleEntity> allSchedules();
 }

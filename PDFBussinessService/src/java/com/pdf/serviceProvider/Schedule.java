@@ -22,4 +22,12 @@ public class Schedule implements ISchedule{
        List<ScheduleEntity> schedule = scheduleConsult.selectSchedule(Integer.valueOf(activityId));
        return schedule;
    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/all")
+    public List<ScheduleEntity> allSchedules() {
+        List<ScheduleEntity> schedules = scheduleConsult.allSchedules();
+        return schedules;
+    }
 }

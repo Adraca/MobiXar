@@ -16,4 +16,8 @@ public class ServScheduleConsult implements ISchedulable {
     public List<ScheduleEntity> selectSchedule(Integer id){
         return scheduleManager.selectSchedule(id);
     }
+    
+    public List<ScheduleEntity> allSchedules(){
+        return scheduleManager.allSchedules();
+    }
 }

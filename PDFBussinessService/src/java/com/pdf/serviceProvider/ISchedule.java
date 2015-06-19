@@ -6,4 +6,5 @@ import javax.ws.rs.PathParam;
 
 public interface ISchedule {
     public List<ScheduleEntity> scheduleList(@PathParam("activityId") String activityId);
+    public List<ScheduleEntity> allSchedules();
 }

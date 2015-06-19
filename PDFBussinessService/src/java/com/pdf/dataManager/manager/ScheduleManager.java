@@ -20,4 +20,8 @@ public class ScheduleManager implements ISchedule{
     public List<ScheduleEntity> selectSchedule(Integer id){
         return schedulefacade.findSchedule(id);
     }
+    
+    public List<ScheduleEntity> allSchedules(){
+        return schedulefacade.findAll();
+    }
 }

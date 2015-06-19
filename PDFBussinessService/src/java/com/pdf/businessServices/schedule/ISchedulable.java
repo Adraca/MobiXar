@@ -5,4 +5,5 @@ import java.util.List;
 
 public interface ISchedulable {
     public List<ScheduleEntity> selectSchedule(Integer id);
+    public List<ScheduleEntity> allSchedules();
 }

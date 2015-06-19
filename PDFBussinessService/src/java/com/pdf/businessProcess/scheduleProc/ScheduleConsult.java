@@ -16,4 +16,8 @@ public class ScheduleConsult {
     public List<ScheduleEntity> selectSchedule(Integer id){
         return proxySchedule.selectSchedule(id);
     }
+
+    public List<ScheduleEntity> allSchedules() {
+        return proxySchedule.allSchedules();
+    }
 }
